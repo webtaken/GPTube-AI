@@ -9,7 +9,7 @@ def bert_prediction(comments: List[Comment]):
             tokens = tokenizer.encode(comment.text_display, return_tensors="pt")
             result = model(tokens)
             score = int(torch.argmax(result.logits))+1
-            comment.score = score
+            comment.sentiment_score = score
         except RuntimeError:
             print(f"failed for comment: {comment.comment_id}")
             pass
